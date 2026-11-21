@@ -1,0 +1,24 @@
+{
+  "name": "dsh-usage-heatmap",
+  "version": "1.0.0",
+  "description": "按日展示 DeepSeek Harness 会话活动与 Token 用量。",
+  "private": true,
+  "type": "module",
+  "icon": "./icon.svg",
+  "files": ["index.js", "rollup.js", "client.js", "cordis.patch.yml", "locale/*.json", "icon.svg", "README.md"],
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "dependencies": { "@deepseek-ai/schemastery": "^3.18.4" },
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": ["@deepseek-ai/dsh-client-ui-sidebar"]
+    }
+  }
+}

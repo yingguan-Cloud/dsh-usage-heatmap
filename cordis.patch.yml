@@ -1,0 +1,4 @@
+- insert:
+    - id: usage-heatmap
+      name: dsh-usage-heatmap
+      config: {}
