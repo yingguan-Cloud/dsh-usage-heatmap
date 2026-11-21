@@ -4,42 +4,39 @@
 
 This is a [the coding assistant / DSH](https://github.com/) plugin (Cordis bundle). Recipients need the same desktop app with `plugin_manager` support.
 
-## Option 1: Install from the GitHub repository (recommended)
+> 💡 Hover over a code block and click the copy button in its top-right corner to copy the whole instruction, then paste it into a DSH conversation.
 
-In a DSH conversation, ask the assistant to run:
+## Option 1 · From the repository (recommended)
 
 ```
 Install with plugin_manager install_bundle: https://github.com/yingguan-Cloud/dsh-usage-heatmap
 ```
 
-## Option 2: Install from the release tarball
+## Option 2 · From the release tarball
 
-Download `dsh-usage-heatmap-1.0.0.tgz` from the [Releases](../../releases) page, then run:
-
-```
-Install with plugin_manager install_bundle: <absolute path to the .tgz file>
-```
-
-The tarball pulls the only dependency, `@deepseek-ai/schemastery`, from the public npm registry automatically — no bundled `node_modules` needed.
-
-## Option 3: Install from a local folder
-
-Copy the whole repository folder to the other machine (keep it intact — do not send single files), then run:
+Download `dsh-usage-heatmap-1.0.0.tgz` from [Releases](../../releases), then replace the path below with the real one:
 
 ```
-Install with plugin_manager install_bundle: C:\Users\<name>\Desktop\dsh-usage-heatmap
+Install with plugin_manager install_bundle: C:\path\to\dsh-usage-heatmap-1.0.0.tgz
+```
+
+## Option 3 · From a local clone
+
+Clone or download the repo first, then replace the path below with the real absolute path (prefix with `link:` to follow future updates):
+
+```
+Install with plugin_manager install_bundle: link:C:\path\to\dsh-usage-heatmap
 ```
 
 > The install spec must be an **absolute path**. A path containing spaces is fine when quoted.
 
 ## After installing
 
-1. Reload the plugin, then hard-refresh the page (`Ctrl+Shift+R`) to load the new client module.
-2. A green grid icon appears in the left sidebar — click it to open the Usage Heatmap panel.
+Reload the plugin, then hard-refresh the page (`Ctrl+Shift+R`) to load the new client module. A green grid icon in the left sidebar — click it to open the Usage Heatmap panel.
 
 ## Requirements
 
-- Only dependency: `@deepseek-ai/schemastery ^3.18.4` (fetched automatically at install time).
+- Only dependency: `@deepseek-ai/schemastery ^3.18.4` (fetched automatically from the public npm registry).
 - The host must provide the `sessionQuery` injection, sidebar slots, and the shared `/api` channel.
 - No data is uploaded; session content is never stored — only local daily aggregates.
 
@@ -49,5 +46,3 @@ Install with plugin_manager install_bundle: C:\Users\<name>\Desktop\dsh-usage-he
 node --test test/rollup.test.js   # 8 tests
 node --check index.js && node --check client.js && node --check rollup.js
 ```
-
-中文版见 [安装说明.md](安装说明.md)。

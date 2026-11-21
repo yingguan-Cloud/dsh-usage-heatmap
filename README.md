@@ -20,31 +20,29 @@
 
 ## 安装
 
-详细的三种安装方式见 [安装说明.md](安装说明.md)（[English](INSTALL.md)）。
+> 💡 **一键复制**：鼠标移到一个代码块上，点击右上角的复制按钮，整条指令即被复制，直接粘贴到 DSH 对话里发送即可。
 
-### 从 tarball 安装（推荐）
-
-下载 [Release](../../releases) 中的 `dsh-usage-heatmap-1.0.0.tgz`，在 DSH 对话里执行：
-
-```
-用 plugin_manager 的 install_bundle 安装：<tgz 文件的绝对路径>
-```
-
-### 从仓库安装
+**方式一 · 仓库地址（最省事）**
 
 ```
 用 plugin_manager 的 install_bundle 安装：https://github.com/yingguan-Cloud/dsh-usage-heatmap
 ```
 
-或从本地克隆目录安装（绝对路径，想持续更新可在路径前加 `link:`）：
+**方式二 · Release tgz（下载后把路径换成实际路径）**
 
 ```
-用 plugin_manager 的 install_bundle 安装：C:\path\to\dsh-usage-heatmap
+用 plugin_manager 的 install_bundle 安装：C:\path\to\dsh-usage-heatmap-1.0.0.tgz
+```
+
+**方式三 · 本地克隆目录（路径前加 `link:` 可跟随仓库更新）**
+
+```
+用 plugin_manager 的 install_bundle 安装：link:C:\path\to\dsh-usage-heatmap
 ```
 
 安装后重新装载插件，页面按 `Ctrl+Shift+R` 硬刷新载入客户端模块。左侧栏出现绿色方块图标即安装成功。
 
-> 唯一依赖 `@deepseek-ai/schemastery` 会从公共 npm 源自动获取，无需自带 `node_modules`。
+> 唯一依赖 `@deepseek-ai/schemastery` 会从公共 npm 源自动获取，无需自带 `node_modules`。详细说明见 [安装说明.md](安装说明.md)（[English](INSTALL.md)）。
 
 ## 数据口径
 

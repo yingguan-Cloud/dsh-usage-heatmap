@@ -20,31 +20,29 @@ A [the coding assistant / DSH](https://github.com/) plugin. Click the green grid
 
 ## Installation
 
-See [INSTALL.md](INSTALL.md) for all three installation methods ([中文](安装说明.md)).
+> 💡 **One-click copy**: hover over a code block and click the copy button in its top-right corner — the whole instruction is copied, ready to paste into a DSH conversation.
 
-### From the tarball (recommended)
-
-Download `dsh-usage-heatmap-1.0.0.tgz` from [Releases](../../releases), then in a DSH conversation run:
-
-```
-Install with plugin_manager install_bundle: <absolute path to the .tgz file>
-```
-
-### From the repository
+**Option 1 · Repository URL (easiest)**
 
 ```
 Install with plugin_manager install_bundle: https://github.com/yingguan-Cloud/dsh-usage-heatmap
 ```
 
-Or from a local clone (absolute path; prefix with `link:` to follow future updates):
+**Option 2 · Release tgz (download it, then replace the path)**
 
 ```
-Install with plugin_manager install_bundle: C:\path\to\dsh-usage-heatmap
+Install with plugin_manager install_bundle: C:\path\to\dsh-usage-heatmap-1.0.0.tgz
+```
+
+**Option 3 · Local clone (prefix with `link:` to follow repo updates)**
+
+```
+Install with plugin_manager install_bundle: link:C:\path\to\dsh-usage-heatmap
 ```
 
 After installing, reload the plugin and hard-refresh the page (`Ctrl+Shift+R`) to load the client module. A green grid icon in the left sidebar means success.
 
-> The only dependency, `@deepseek-ai/schemastery`, is fetched from the public npm registry automatically — no bundled `node_modules` needed.
+> The only dependency, `@deepseek-ai/schemastery`, is fetched from the public npm registry automatically — no bundled `node_modules` needed. See [INSTALL.md](INSTALL.md) ([中文](安装说明.md)) for full details.
 
 ## Data semantics
 
