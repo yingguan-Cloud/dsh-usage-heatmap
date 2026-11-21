@@ -16,7 +16,9 @@
 - 默认每 15 秒自动刷新；也可手动「刷新」。
 - 主题随宿主明暗切换，所有可见文案走 Client locale（中/英）。
 
-## 安装
+## 安装 / Installation
+
+English guide: [INSTALL.md](INSTALL.md)
 
 ### 从 tarball 安装（推荐）
 
