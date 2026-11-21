@@ -1,5 +1,7 @@
 # Installation
 
+[中文](安装说明.md) · [English](INSTALL.md)
+
 This is a [the coding assistant / DSH](https://github.com/) plugin (Cordis bundle). Recipients need the same desktop app with `plugin_manager` support.
 
 ## Option 1: Install from the GitHub repository (recommended)

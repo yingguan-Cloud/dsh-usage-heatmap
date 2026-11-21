@@ -1,12 +1,14 @@
+<div align="center">
+
 # the coding assistant 用量热力图
+
+**中文** · [English](README.en.md)
+
+</div>
 
 ![用量热力图预览](preview.svg)
 
 一个 [the coding assistant / DSH](https://github.com/) 插件：在左侧栏点击绿色方块图标打开「用量热力图」面板，按日展示会话活动强度与模型 Token 消耗。
-
-## 预览
-
-![preview](preview.svg)
 
 ## 功能
 
@@ -16,9 +18,9 @@
 - 默认每 15 秒自动刷新；也可手动「刷新」。
 - 主题随宿主明暗切换，所有可见文案走 Client locale（中/英）。
 
-## 安装 / Installation
+## 安装
 
-English guide: [INSTALL.md](INSTALL.md)
+详细的三种安装方式见 [安装说明.md](安装说明.md)（[English](INSTALL.md)）。
 
 ### 从 tarball 安装（推荐）
 
@@ -34,7 +36,7 @@ English guide: [INSTALL.md](INSTALL.md)
 用 plugin_manager 的 install_bundle 安装：https://github.com/yingguan-Cloud/dsh-usage-heatmap
 ```
 
-或从本地克隆目录安装（绝对路径）：
+或从本地克隆目录安装（绝对路径，想持续更新可在路径前加 `link:`）：
 
 ```
 用 plugin_manager 的 install_bundle 安装：C:\path\to\dsh-usage-heatmap
@@ -73,4 +75,4 @@ node --check index.js && node --check client.js && node --check rollup.js
 
 ## License
 
-MIT
+[MIT](LICENSE)
