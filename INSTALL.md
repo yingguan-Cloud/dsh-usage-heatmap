@@ -2,47 +2,69 @@
 
 [中文](安装说明.md) · [English](INSTALL.md)
 
-This is a [the coding assistant / DSH](https://github.com/) plugin (Cordis bundle). Recipients need the same desktop app with `plugin_manager` support.
-
-> 💡 Hover over a code block and click the copy button in its top-right corner to copy the whole instruction, then paste it into a DSH conversation.
-
-## Option 1 · From the repository (recommended)
-
-```
-Install with plugin_manager install_bundle: https://github.com/yingguan-Cloud/dsh-usage-heatmap
-```
-
-## Option 2 · From the release tarball
-
-Download `dsh-usage-heatmap-1.0.0.tgz` from [Releases](../../releases), then replace the path below with the real one:
-
-```
-Install with plugin_manager install_bundle: C:\path\to\dsh-usage-heatmap-1.0.0.tgz
-```
-
-## Option 3 · From a local clone
-
-Clone or download the repo first, then replace the path below with the real absolute path (prefix with `link:` to follow future updates):
-
-```
-Install with plugin_manager install_bundle: link:C:\path\to\dsh-usage-heatmap
-```
-
-> The install spec must be an **absolute path**. A path containing spaces is fine when quoted.
-
-## After installing
-
-Reload the plugin, then hard-refresh the page (`Ctrl+Shift+R`) to load the new client module. A green grid icon in the left sidebar — click it to open the Usage Heatmap panel.
-
-## Requirements
-
-- Only dependency: `@deepseek-ai/schemastery ^3.18.4` (fetched automatically from the public npm registry).
-- The host must provide the `sessionQuery` injection, sidebar slots, and the shared `/api` channel.
-- No data is uploaded; session content is never stored — only local daily aggregates.
-
-## Verify (optional)
+## Option 1: Install from source / development (recommended)
 
 ```sh
-node --test test/rollup.test.js   # 8 tests
-node --check index.js && node --check client.js && node --check rollup.js
+git clone https://github.com/yingguan-Cloud/dsh-usage-heatmap.git
+cd dsh-usage-heatmap
+pnpm install
 ```
+
+> `client.js` ships pre-built, so no `pnpm build` is needed. If a build step is added later, insert `pnpm build` here.
+
+Then add to the `dependencies` of `~/.dsh/profiles/<your profile>/package.json`:
+
+```json
+"dsh-usage-heatmap": "link:/absolute/path/dsh-usage-heatmap"
+```
+
+And append the mount row to `~/.dsh/profiles/<your profile>/cordis.patch.yml`:
+
+```yaml
+- insert:
+    - id: usage-heatmap
+      name: 'dsh-usage-heatmap'
+      config: {}
+```
+
+Finally, in the profile directory:
+
+```sh
+cd ~/.dsh/profiles/<your profile>
+pnpm install
+```
+
+Restart DSH and hard-refresh (Cmd/Ctrl+Shift+R). A green grid icon appears in the left sidebar — click it to open Usage Heatmap.
+
+If you hit `Ignored build scripts`, run first:
+
+```sh
+cd ~/.dsh/profiles/<your profile>
+pnpm approve-builds --all
+pnpm install
+```
+
+## Option 2: Install from tarball (when a release is available)
+
+Grab `dsh-usage-heatmap-1.0.0.tgz` from [Releases](../../releases), then:
+
+```sh
+dsh plugin --profile <your profile> add /absolute/path/dsh-usage-heatmap-1.0.0.tgz
+```
+
+> If your DSH provides the `plugin_manager` tool, you can also say in a conversation: `Install with plugin_manager install_bundle: <absolute path to the .tgz>`.
+
+## Updates
+
+For a source install:
+
+```sh
+cd dsh-usage-heatmap
+git pull
+pnpm install
+
+cd ~/.dsh/profiles/<your profile>
+pnpm install
+```
+
+Restart DSH and hard-refresh (Cmd/Ctrl+Shift+R) to apply.

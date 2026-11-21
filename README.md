@@ -20,7 +20,7 @@
 
 ## 安装
 
-> 💡 **一键复制**：鼠标移到一个代码块上，点击右上角的复制按钮，整条指令即被复制，直接粘贴到 DSH 对话里发送即可。
+> 💡 鼠标移到代码块上点右上角复制按钮即可一键复制整条指令，粘贴到 DSH 对话发送。完整的源码安装 / tarball 安装 / 更新步骤见 [安装说明.md](安装说明.md)（[English](INSTALL.md)）。
 
 **方式一 · 仓库地址（最省事）**
 
@@ -40,9 +40,9 @@
 用 plugin_manager 的 install_bundle 安装：link:C:\path\to\dsh-usage-heatmap
 ```
 
-安装后重新装载插件，页面按 `Ctrl+Shift+R` 硬刷新载入客户端模块。左侧栏出现绿色方块图标即安装成功。
+安装后重启 DSH 并硬刷新（Cmd/Ctrl+Shift+R），左侧栏出现绿色方块图标即成功。
 
-> 唯一依赖 `@deepseek-ai/schemastery` 会从公共 npm 源自动获取，无需自带 `node_modules`。详细说明见 [安装说明.md](安装说明.md)（[English](INSTALL.md)）。
+> 唯一依赖 `@deepseek-ai/schemastery` 会从公共 npm 源自动获取，无需自带 `node_modules`。
 
 ## 数据口径
 

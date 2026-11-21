@@ -20,7 +20,7 @@ A [the coding assistant / DSH](https://github.com/) plugin. Click the green grid
 
 ## Installation
 
-> 💡 **One-click copy**: hover over a code block and click the copy button in its top-right corner — the whole instruction is copied, ready to paste into a DSH conversation.
+> 💡 Hover over a code block and click the copy button in its top-right corner to copy the whole instruction, then paste it into a DSH conversation. Full source / tarball / update steps: [INSTALL.md](INSTALL.md) ([中文](安装说明.md)).
 
 **Option 1 · Repository URL (easiest)**
 
@@ -40,9 +40,9 @@ Install with plugin_manager install_bundle: C:\path\to\dsh-usage-heatmap-1.0.0.t
 Install with plugin_manager install_bundle: link:C:\path\to\dsh-usage-heatmap
 ```
 
-After installing, reload the plugin and hard-refresh the page (`Ctrl+Shift+R`) to load the client module. A green grid icon in the left sidebar means success.
+Restart DSH and hard-refresh (Cmd/Ctrl+Shift+R). A green grid icon in the left sidebar means success.
 
-> The only dependency, `@deepseek-ai/schemastery`, is fetched from the public npm registry automatically — no bundled `node_modules` needed. See [INSTALL.md](INSTALL.md) ([中文](安装说明.md)) for full details.
+> The only dependency, `@deepseek-ai/schemastery`, is fetched from the public npm registry automatically — no bundled `node_modules` needed.
 
 ## Data semantics
 
