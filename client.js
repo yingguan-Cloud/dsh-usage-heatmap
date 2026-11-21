@@ -52,14 +52,20 @@ window.__ModuleLoader__.load({
         const firstMonth=[];days.forEach((d,i)=>{if(d>=b.start&&d<=b.end&&(i===0||days[i-1].getMonth()!==d.getMonth())) firstMonth.push({d,i});});
         const number=n=>new Intl.NumberFormat(locale).format(n||0);
         const total=data?.totals?.[metric]||0;
-        const today=data?.today;
+        const shownDay=selected?(rows.get(selected)||{date:selected,sessions:0,input:0,output:0,cacheRead:0,cacheWrite:0,total:0}):null;
+        const today=(shownDay&&{
+          date:selected,
+          total:shownDay.total||0,
+          input:shownDay.input, output:shownDay.output,
+          cacheRead:shownDay.cacheRead, cacheWrite:shownDay.cacheWrite,
+        })||data?.today;
         const periods=data?.periods||{};
         const period=(key,label)=>h('div',{key},h('strong',null,data?number(periods[key]?.total):'—'),h('span',null,label));
         return h('div',{className:'uh-page'},h('style',null,css),h('div',{className:'uh-wrap'},
           h('div',{className:'uh-kicker'},t.tagline),h('h1',{className:'uh-title'},t.title),h('p',{className:'uh-sub'},t.sub),
           h('section',{className:'uh-today'},
             h('div',{className:'uh-today-main'},
-              h('span',{className:'uh-today-label'},t.today+(today?.date?' · '+today.date:'')),
+              h('span',{className:'uh-today-label'},(shownDay?t.detail:t.today)+(today?.date?' · '+today.date:'')),
               h('span',null,h('span',{className:'uh-today-value'},data?number(today?.total):'—'),h('span',{className:'uh-today-unit'},t.tokenUnit))),
             h('div',{className:'uh-today-split'},
               period('days7',t.days7), period('days15',t.days15), period('days30',t.days30))),
