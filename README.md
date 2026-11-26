@@ -17,6 +17,7 @@
 - **悬停**：显示日期与当天数值。**点击某格**：列出当天有活动的会话 ID 与时间。
 - 默认每 15 秒自动刷新；也可手动「刷新」。
 - 主题随宿主明暗切换，所有可见文案走 Client locale（中/英）。
+- **删除对话不回退统计**：每个会话的按日聚合会归档，删除后历史热力图不变淡（详见下文「删除归档」）。
 
 ## 安装
 
@@ -31,7 +32,7 @@
 **方式二 · Release tgz（下载后把路径换成实际路径）**
 
 ```
-用 plugin_manager 的 install_bundle 安装：C:\path\to\dsh-usage-heatmap-1.0.0.tgz
+用 plugin_manager 的 install_bundle 安装：C:\path\to\dsh-usage-heatmap-1.1.0.tgz
 ```
 
 **方式三 · 本地克隆目录（路径前加 `link:` 可跟随仓库更新）**
@@ -52,23 +53,37 @@
 - **不提供货币 Credits**：当前 Harness 的会话接口没有可核实的计费金额字段，所以第二个标签明确叫 Token 用量，不做 Token→Credits 的汇率臆造。
 - 不保存会话正文、工具调用或事件副本，只保留按日聚合；不连接任何外部服务。
 
+## 删除归档（v1.1 起）
+
+热力图会把**每个会话的按日聚合**写入当前 profile 目录下的 `usage-heatmap-state.json`，只含会话 ID、创建时间和每日的会话数/四项 Token 数，**不含任何正文或事件**。此后：
+
+- 会话被删除（包括 `dsh-delete-session` 的「删除对话」）后，已归档的那几天**不会减少**。
+- 会话在卸载/删除前会通过 `session/disposed` 事件再做一次**同步快照**，所以即使删除前从未打开过热力图的活动会话也会被计入。
+- 插件加载约 2.5 秒后会在后台补扫一次所有**持久化但非活动**的会话，避免「旧会话还没被看过就被删掉」的缺口。
+- 重启后归档仍会合并进统计。归档**只增不减**：受保护的是「归档之后」的删除；若某会话在本版本首次运行前就已被删（日志已不在），无法凭空恢复。
+- 清零重来：退出 DSH 后删除 `usage-heatmap-state.json`。把 `keepDeleted` 设为 `false` 可完全关闭归档，行为回到只统计当前存在的会话。
+
 ## 配置（`cordis.patch.yml` 的 `usage-heatmap` 行）
 
 `defaultMetric: sessions|tokens`、`rangeMonths: 1..24`、`weekStart: 0|1`、`scale: quantile|fixed`、`backfill: true|false`、`timeZone`（默认 `Asia/Shanghai`）。
 
+归档相关：`keepDeleted: true|false`（默认 `true`）、`stateFile`（默认留空 = 当前 profile 目录下的 `usage-heatmap-state.json`，可写绝对路径改位置）。
+
 ## Agent 工具
 
-`usage_report`：返回区间内（默认本月）的会话数、四项 Token 分项与总量，以及今天、近 7 天、近 15 天、近 30 天的 Token 消耗。它和面板共用同一套聚合代码（`readDaily`），所以两边数字必然一致。
+`usage_report`：返回区间内（默认本月）的会话数、四项 Token 分项与总量，以及今天、近 7 天、近 15 天、近 30 天的 Token 消耗。它和面板共用同一套聚合代码（`readDaily`），所以两边数字必然一致，也都包含已删除会话的归档数据。
 
 ## 接口
 
 页面调用同源 `GET /api/dsh-usage-heatmap?from=YYYY-MM-DD&to=YYYY-MM-DD[&day=YYYY-MM-DD]`。该路由通过 `ctx.connection.fetch.register` 注册在 `/api` 的共享通道上，与浏览器登录 Cookie 使用同一套准入；未认证请求返回 401。
 
+返回里的 `archived` 是「已归档、但当前会话列表中已不存在」的会话数量，便于自查归档是否生效。
+
 ## 本地验证
 
 ```sh
-node --test test/rollup.test.js   # 8 项：时区分桶、四桶求和、重试、压缩、fork 去重
-node --check index.js && node --check client.js && node --check rollup.js
+node --test test/rollup.test.js test/archive.test.js   # 13 项：聚合、归档、删除后不回退、keepDeleted=false
+node --check index.js && node --check store.js && node --check client.js && node --check rollup.js
 ```
 
 ## License

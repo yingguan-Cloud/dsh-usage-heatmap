@@ -46,10 +46,10 @@ pnpm install
 
 ## Option 2: Install from tarball (when a release is available)
 
-Grab `dsh-usage-heatmap-1.0.0.tgz` from [Releases](../../releases), then:
+Grab `dsh-usage-heatmap-1.1.0.tgz` from [Releases](../../releases), then:
 
 ```sh
-dsh plugin --profile <your profile> add /absolute/path/dsh-usage-heatmap-1.0.0.tgz
+dsh plugin --profile <your profile> add /absolute/path/dsh-usage-heatmap-1.1.0.tgz
 ```
 
 > If your DSH provides the `plugin_manager` tool, you can also say in a conversation: `Install with plugin_manager install_bundle: <absolute path to the .tgz>`.
